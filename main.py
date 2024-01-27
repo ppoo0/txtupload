@@ -29,7 +29,7 @@ auth_users = [6389388334,-1002051259332]
 
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nPress /KISHAN")
+    editable = await m.reply_text(f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nPress /RAM")
 
 
 @bot.on_message(filters.command("stop")&(filters.chat(auth_users)))
@@ -38,9 +38,9 @@ async def restart_handler(_, m):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.command(["viky"])&(filters.chat(auth_users)))
+@bot.on_message(filters.command(["RAM"])&(filters.chat(auth_users)))
 async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : KISHAN😎BHAI**")
+    editable = await m.reply_text(f"**Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : PROFESSOR**")
     input: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
     x = await input.download()
     await input.delete(True)
@@ -153,8 +153,8 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:                               
-                cc = f'** {str(count).zfill(3)}.** {name1} ({res}).mkv\n**Batch Name :** {b_name}\n\n**Downloaded by 😎 {CR}**'
-                cc1 = f'** {str(count).zfill(3)}.** {name1}.pdf \n**Batch Name :**{b_name}\n\n**Downloaded by 😎 {CR}**'
+                cc = f'** {str(count).zfill(3)}.** {name1} ({res}).mkv\n**Batch Name :** {b_name}\n\n**Downloaded by PROFESSOR{CR}**'
+                cc1 = f'** {str(count).zfill(3)}.** {name1}.pdf \n**Batch Name :**{b_name}\n\n**Downloaded by PROFESSOR  {CR}**'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -179,7 +179,7 @@ async def txt_handler(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n**link:**`{url}`\n\n **bot made by KISHAN😎**")
+                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n**link:**`{url}`\n\n **BOT MADE BY PROFESSER**")
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
                     await prog.delete(True)

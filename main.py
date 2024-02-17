@@ -107,7 +107,7 @@ async def txt_handler(bot: Client, m: Message):
     else:
         CR = raw_text3
 
-    await editable.edit("Now send the **Thumb url**\nEg : `https://telegra.ph/file/0633f8b6a6f110d34f044.jpg`\n\nor Send `no`")
+    await editable.edit("Now send the **Thumb url**\nEg : `https://graph.org/file/a5956029234cf0bd5eb4b.jpg`\n\nor Send `no`")
     input6 = message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
     raw_text6 = input6.text
     await input6.delete(True)
@@ -193,7 +193,7 @@ async def txt_handler(bot: Client, m: Message):
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("🔰Done🔰")
+    await m.reply_text("🔰 👁️ JI MALIK KAAM DONE HO GAYA 👁️ 🔰")
 @bot.on_message(filters.command(["vpdf"])&(filters.chat(auth_users)))
 async def vision_pdf(bot: Client, m: Message):
     editable = await m.reply_text("**Hello Dear,** I am Text File Downloader Bot.\nI can download **PDFs of vision** from text file one by one.\n\n**Developer: @Be4stX** \n**Language:** Python\n**Framework:** 🔥Pyrogram\n\nNow Send Your **TXT File:-**\n")

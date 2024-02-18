@@ -153,8 +153,8 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:                               
-                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) IPS LOVER.mkv\n**Batch Name :** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ IPS LOVER'S @FILESTOREKANHA_BOT {CR}**'
-                cc1 = f'** {str(count).zfill(3)}.** {name1} IPS LOVER.pdf \n**Batch Name :**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ IPS LOVER'S @FILESTOREKANHA_BOT {CR}**'
+                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) IPS LOVER.mkv\n**Batch Name :** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ {CR}**'
+                cc1 = f'** {str(count).zfill(3)}.** {name1} IPS LOVER.pdf \n**Batch Name :**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ {CR}**'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -179,7 +179,7 @@ async def txt_handler(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n**link:**`{url}`\n\n **BOT MADE BY KANHAIYA LAL MEENA KUWAL**")
+                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n**BOT MADE BY KANHAIYA LAL MEENA KUWAL**")
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
                     await prog.delete(True)

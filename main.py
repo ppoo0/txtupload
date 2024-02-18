@@ -46,19 +46,18 @@ async def txt_handler(bot: Client, m: Message):
     await input.delete(True)
     file_name, ext = os.path.splitext(os.path.basename(x))
     credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-        try:
-            with open(x, "r") as f:
-                content = f.read()
-            content = content.split("\n")
-            links = []
-            for i in content:
-                links.append(i.split("://", 1))
-            os.remove(x)
-            # print(len(links)
-        except:
-            await m.reply_text("Invalid file input.🥲")
-            os.remove(x)
-            return
+        try:    
+        with open(x, "r") as f:
+            content = f.read()
+        content = content.split("\n")
+        links = []
+        for i in content:
+            links.append(i.split("://", 1))
+        os.remove(x)
+    except:
+        await m.reply_text("Invalid file input.")
+        os.remove(x)
+        return
     else:
         content = input.text
         content = content.split("\n")

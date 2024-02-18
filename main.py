@@ -17,6 +17,7 @@ from logger import logging
 import time
 import asyncio
 from pyrogram.types import User, Message 
+from config
 import sys
 import re
 import os

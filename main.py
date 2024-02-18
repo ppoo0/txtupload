@@ -153,8 +153,8 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:                               
-                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) IPS LOVER.mkv\n**Batch Name :** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ {💕 IPS LOVER @FILESTOREKANHA_BOT}**'
-                cc1 = f'** {str(count).zfill(3)}.** {name1} IPS LOVER.pdf \n**Batch Name :**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ {💕 IPS LOVER @FILESTOREKANHA_BOT}**'
+                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) IPS LOVER.mkv\n**Batch Name :** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ { IPS LOVER @FILESTOREKANHA_BOT}**'
+                cc1 = f'** {str(count).zfill(3)}.** {name1} IPS LOVER.pdf \n**Batch Name :**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ { IPS LOVER @FILESTOREKANHA_BOT}**'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)

@@ -16,8 +16,7 @@ import helper
 from logger import logging
 import time
 import asyncio
-from pyrogram.types import User, Message 
-from config
+from pyrogram.types import User, Message
 import sys
 import re
 import os
@@ -26,29 +25,27 @@ bot = Client("bot",
              bot_token= "6883697340:AAFWb2WdXxmdeGemnkUddCsaZu0NuOK0o6w",
              api_id= 20945078,
              api_hash= "93f6b8ce4bb0ab61b4c7e42187f2aa64")
+auth_users =  [1664376941]
 
-
-@bot.on_message(filters.command(["start"]) & filters.user(ADMINS))
+@bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nPress /TXT")
+    editable = await m.reply_text(f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nPress /RAM")
 
 
-@bot.on_message(filters.command("stop") & filters.user(ADMINS))
+@bot.on_message(filters.command("stop")&(filters.chat(auth_users)))
 async def restart_handler(_, m):
-    await m.reply_text("**STOPPED**🛑🛑", True)
+    await m.reply_text("**STOPPED**🛑", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.command(["TXT"]) & filters.user(ADMINS))
-async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(f"**Hey [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nSend txt file**")
-    input: Message = await bot.listen(editable.chat.id)
-    if input.document:
-        x = await input.download()
-        await bot.send_document(-1001664376941, x)
-        await input.delete(True)
-        file_name, ext = os.path.splitext(os.path.basename(x))
-        credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+@bot.on_message(filters.command(["RAM"])&(filters.chat(auth_users)))
+async def txt_handler(bot: Client, m: Message):
+    editable = await m.reply_text(f"**Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : 🅑🅞🅣 🅜🅐🅓🅔 🅑🅨 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻 content: @Chatkanhabot **")
+    input: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+    x = await input.download()
+    await input.delete(True)
+    file_name, ext = os.path.splitext(os.path.basename(x))
+    credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
 
 
         path = f"./downloads/{m.chat.id}"

@@ -40,7 +40,7 @@ async def restart_handler(_, m):
 
 @bot.on_message(filters.command(["RAM"])&(filters.chat(auth_users)))
 async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : KANHAIYA LAL MEENA**")
+    editable = await m.reply_text(f"**Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : 🅑🅞🅣 🅜🅐🅓🅔 🅑🅨 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻 content: @Chatkanhabot **")
     input: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
     x = await input.download()
     await input.delete(True)
@@ -153,8 +153,8 @@ async def txt_handler(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:                               
-                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) 🅘🅟🅢 🅛🅞🅥🅔🅡.mkv\n**Batch Name ➤** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ➤ 🅘🅟🅢 🅛🅞🅥🅔🅡 @Chatkanhabot **'
-                cc1 = f'** {str(count).zfill(3)}.** {name1} 🅘🅟🅢 🅛🅞🅥🅔🅡.pdf \n**Batch Name ➤**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘  ➤ 🅘🅟🅢 🅛🅞🅥🅔🅡 @Chatkanhabot **'
+                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) 🅘🅟🅢 🅛🅞🅥🅔🅡.mkv\n**🅑🅐🅣🅒🅗 🅝🅐🅜🅔 ➤** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ➤ 🅘🅟🅢 🅛🅞🅥🅔🅡 @Chatkanhabot **'
+                cc1 = f'** {str(count).zfill(3)}.** {name1} 🅘🅟🅢 🅛🅞🅥🅔🅡.pdf \n**🅑🅐🅣🅒🅗 🅝🅐🅜🅔 ➤**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ➤ 🅘🅟🅢 🅛🅞🅥🅔🅡 @Chatkanhabot **'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -179,7 +179,7 @@ async def txt_handler(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n**BOT MADE BY 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻 @Chatkanhabot**")
+                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n**🅑🅞🅣 🅜🅐🅓🅔 🅑🅨 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻 @Chatkanhabot**")
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
                     await prog.delete(True)

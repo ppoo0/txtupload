@@ -46,7 +46,7 @@ async def txt_handler(bot: Client, m: Message):
     await input.delete(True)
     file_name, ext = os.path.splitext(os.path.basename(x))
     credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-        try:    
+    try:    
         with open(x, "r") as f:
             content = f.read()
         content = content.split("\n")
@@ -58,12 +58,6 @@ async def txt_handler(bot: Client, m: Message):
         await m.reply_text("Invalid file input.")
         os.remove(x)
         return
-    else:
-        content = input.text
-        content = content.split("\n")
-        links = []
-        for i in content:
-            links.append(i.split("://", 1))
    
     await editable.edit(f"Total links found are **{len(links)}**\n\nSend From where you want to download initial is **1**")
     input0: Message = await bot.listen(editable.chat.id)

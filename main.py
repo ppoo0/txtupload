@@ -48,8 +48,6 @@ async def txt_handler(bot: Client, m: Message):
     credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
 
 
-        path = f"./downloads/{m.chat.id}"
-
         try:
             with open(x, "r") as f:
                 content = f.read()

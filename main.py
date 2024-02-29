@@ -1,83 +1,83 @@
-from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
-import requests
+import os
+import re
+import sys
 import json
-import subprocess
-from pyrogram import Client, filters
-from pyrogram.types.messages_and_media import message
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.errors import FloodWait
-from pyromod import listen
-from pyrogram.types import Message
-from pyrogram import Client, filters
-from p_bar import progress_bar
-from subprocess import getstatusoutput
-from aiohttp import ClientSession
-import helper
-from logger import logging
 import time
 import asyncio
-from pyrogram.types import User, Message
-import sys
-import re
-import os
+import requests
+import subprocess
 
-bot = Client("bot",
-             bot_token= "6767687410:AAF2S17Tpb4mJC4tFEeKO98vbenAkcWFL8o",
-             api_id= 26408299,
-             api_hash= "5b6dc68aeefa5b15969c5edaa47218fa")
-auth_users =  [6859439643]
+import core as helper
+from utils import progress_bar
+from vars import api_id, api_hash, bot_token
+from aiohttp import ClientSession
+from pyromod import listen
+from subprocess import getstatusoutput
+
+from pyrogram import Client, filters
+from pyrogram.types import Message
+from pyrogram.errors import FloodWait
+from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
+from pyrogram.types.messages_and_media import message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
+
+bot = Client(
+    "bot",
+    api_id=api_id,
+    api_hash=api_hash,
+    bot_token=bot_token)
+
 
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(f"Hello [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nPress /TXT")
+    editable = await m.reply_text("𝗛𝗜")
 
 
-@bot.on_message(filters.command("stop")&(filters.chat(auth_users)))
+@bot.on_message(filters.command("restart"))
 async def restart_handler(_, m):
-    await m.reply_text("**STOPPED**🛑", True)
+    await m.reply_text("**𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗲𝗱**🚦", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.command(["TXT"])&(filters.chat(auth_users)))
-async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : 🅑🅞🅣 🅜🅐🅓🅔 🅑🅨 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻 content: @Chatkanhabot **")
-    input: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+
+@bot.on_message(filters.command(["rajput"]))
+async def account_login(bot: Client, m: Message):
+    editable = await m.reply_text('𝗛𝗜')
+    input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
-    file_name, ext = os.path.splitext(os.path.basename(x))
-    credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-    try:    
-        with open(x, "r") as f:
-            content = f.read()
-        content = content.split("\n")
-        links = []
-        for i in content:
-            links.append(i.split("://", 1))
-        os.remove(x)
+
+    path = f"./downloads/{m.chat.id}"
+
+    try:
+       with open(x, "r") as f:
+           content = f.read()
+       content = content.split("\n")
+       links = []
+       for i in content:
+           links.append(i.split("://", 1))
+       os.remove(x)
+            # print(len(links)
     except:
-        await m.reply_text("Invalid file input.")
-        os.remove(x)
-        return
+           await m.reply_text("𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗳𝗶𝗹𝗲 𝗶𝗻𝗽𝘂𝘁.")
+           os.remove(x)
+           return
+    
    
-    await editable.edit(f"Total links found are **{len(links)}**\n\nSend From where you want to download initial is **1**")
-    input0: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+    await editable.edit(f"𝗧𝗼𝘁𝗮𝗹 𝗹𝗶𝗻𝗸𝘀 𝗳𝗼𝘂𝗻𝗱 𝗮𝗿𝗲 **{len(links)}**\n\n𝗦𝗲𝗻𝗱 𝗙𝗿𝗼𝗺 𝘄𝗵𝗲𝗿𝗲 𝘆𝗼𝘂 𝘄𝗮𝗻𝘁 𝘁𝗼 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗶𝗻𝗶𝘁𝗶𝗮𝗹 𝗶𝘀 **𝟭**")
+    input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
-    try:
-        arg = int(raw_text)
-    except:
-        arg = 0
-    await editable.edit("**Enter Batch Name or send d for grabing from text filename.**")
-    input1: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+
+    await editable.edit("**𝗘𝗻𝘁𝗲𝗿 𝗕𝗮𝘁𝗰𝗵 𝗡𝗮𝗺𝗲**")
+    input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
-    if raw_text0 == 'd':
-        b_name = file_name
-    else:
-        b_name = raw_text0
+    
 
-    await editable.edit("**Enter resolution 360,480,720**")
-    input2: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+    await editable.edit("**𝗘𝗻𝘁𝗲𝗿 𝗿𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻**")
+    input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
     try:
@@ -98,34 +98,42 @@ async def txt_handler(bot: Client, m: Message):
     except Exception:
             res = "UN"
     
-    await editable.edit("**Enter Your Name or send `de` for use default**")
-    input3: Message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+    
+
+    await editable.edit("𝗘𝗻𝘁𝗲𝗿 𝗦𝘂𝗳𝗳𝗶𝘅 **𝗻𝗼**")
+    input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
-    if raw_text3 == 'de':
-        CR = credit
+    highlighter  = f"️ ⁪⁬⁮⁮⁮"
+    if raw_text3 == 'no':
+        MR = highlighter 
     else:
-        CR = raw_text3
-
-    await editable.edit("Now send the **Thumb url**\nEg : `https://graph.org/file/a5956029234cf0bd5eb4b.jpg`\n\nor Send `no`")
-    input6 = message = await bot.listen(editable.chat.id,filters.user(m.from_user.id))
+        MR = raw_text3
+   
+    await editable.edit("𝗦𝗲𝗻𝗱 𝗧𝗵𝘂𝗺𝗯 𝘂𝗿𝗹 𝗼𝗿 𝗶𝗺𝗮𝗴𝗲")
+    input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
     await input6.delete(True)
     await editable.delete()
 
     thumb = input6.text
     if thumb.startswith("http://") or thumb.startswith("https://"):
-        getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
-        thumb = "thumb.jpg"
+        getstatusoutput(f"wget '{thumb}' -O 'https://telegra.ph/file/9280853d5414871b09b03.jpg'")
+        thumb = "https://telegra.ph/file/9280853d5414871b09b03.jpg"
     else:
         thumb == "no"
 
-    count =int(raw_text)    
-    try:
-        for i in range(arg, len(links)):
+    if len(links) == 1:
+        count = 1
+    else:
+        count = int(raw_text)
 
-            Vxy = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","")
-            url = "https://" + Vxy
+    try:
+        for i in range(count - 1, len(links)):
+
+            V = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","") # .replace("mpd","m3u8")
+            url = "https://" + V
+
             if "visionias" in url:
                 async with ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Accept-Language': 'en-US,en;q=0.9', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Referer': 'http://www.visionias.in/', 'Sec-Fetch-Dest': 'iframe', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'cross-site', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform': '"Android"',}) as resp:
@@ -152,9 +160,10 @@ async def txt_handler(bot: Client, m: Message):
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
-            try:                               
-                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) 🅘🅟🅢 🅛🅞🅥🅔🅡.mkv\n\n**🅑🅐🅣🅒🅗 🅝🅐🅜🅔 ➤** {b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ➤ 🅘🅟🅢 🅛🅞🅥🅔🅡 @Chatkanhabot **'
-                cc1 = f'** {str(count).zfill(3)}.** {name1} 🅘🅟🅢 🅛🅞🅥🅔🅡.pdf \n\n**🅑🅐🅣🅒🅗 🅝🅐🅜🅔 ➤**{b_name}\n\n**𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ➤ 🅘🅟🅢 🅛🅞🅥🅔🅡 @Chatkanhabot **'
+            try:  
+                
+                cc = f'** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}{MR}.mkv\n**𝗕𝗮𝘁𝗰𝗵 »** {raw_text0}\n\n 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐁𝐘 - ๛𝐌𝐑๛𝐑͜͡𝐀𝐉𝐏𝐔𝐓๛ \n **@ssccgl_preparation**'
+                cc1 = f'** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}{MR}.pdf \n**𝗕𝗮𝘁𝗰𝗵 »** {raw_text0}\n\n 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐁𝐘 - ๛𝐌𝐑๛𝐑͜͡𝐀𝐉𝐏𝐔𝐓๛ \n **@ssccgl_preparation**'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -166,12 +175,13 @@ async def txt_handler(bot: Client, m: Message):
                         await m.reply_text(str(e))
                         time.sleep(e.x)
                         continue
+                
                 elif ".pdf" in url:
                     try:
                         cmd = f'yt-dlp -o "{name}.pdf" "{url}"'
                         download_cmd = f"{cmd} -R 25 --fragment-retries 25"
                         os.system(download_cmd)
-                        await bot.send_document(chat_id=m.chat.id,document=f'{name}.pdf', caption=cc1)
+                        copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
                         count += 1
                         os.remove(f'{name}.pdf')
                     except FloodWait as e:
@@ -179,72 +189,24 @@ async def txt_handler(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    prog = await m.reply_text(f"**Downloading:-**\n\n** Video Name :-** `{name}\nQuality - {raw_text2}`\n\n**🅑🅞🅣 🅜🅐🅓🅔 🅑🅨 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻 @Chatkanhabot**")
+                    Show = f"**⥥ 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 »**\n\n**𝗡𝗮𝗺𝗲 »** `{name}\n𝗤𝘂𝗮𝗹𝗶𝘁𝘆 » {raw_text2}`\n\n**𝗨𝗿𝗹 »** `{url}`"
+                    prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
                     await prog.delete(True)
-                    await helper.send_vid(bot, m, cc, filename, thumb, name)
+                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
                     count += 1
+                    time.sleep(1)
 
             except Exception as e:
-                await m.reply_text(f"**This #Failed File is not Counted**\n**Name** =>> `{name}`\n**Link** =>> `{url}`\n\n ** fail reason »** {e}")
-                count += 1
+                await m.reply_text(
+                    f"**𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 𝗜𝗻𝘁𝗲𝗿𝘂𝗽𝘁𝗲𝗱 **\n{str(e)}\n**𝗡𝗮𝗺𝗲** » {name}\n**𝗟𝗶𝗻𝗸** » `{url}`"
+                )
                 continue
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("🤣 👁️ JI MALIK KAAM PURA HO GAYA 👁️ 🤪")
-@bot.on_message(filters.command(["vpdf"])&(filters.chat(auth_users)))
-async def vision_pdf(bot: Client, m: Message):
-    editable = await m.reply_text("**Hello Dear,** I am Text File Downloader Bot.\nI can download **PDFs of vision** from text file one by one.\n\n**Developer: 🅑🅞🅣 🅜🅐🅓🅔 🅑🅨 🅺🅰🅽🅷🅰🅸🆈🅰 🅻🅰🅻 🅼🅴🅴🅽🅰 🅺🆄🆆🅰🅻  @Chatkanhabot** \n**Language:** Python\n**Framework:** 🔥Pyrogram\n\nNow Send Your **TXT File:-**\n")
-    input: Message = await bot.listen(editable.chat.id)
-    x = await input.download()
-    await input.delete(True)
+    await m.reply_text("✅")
 
-    path = f"./downloads/{m.chat.id}"
 
-    try:
-            with open(x, "r") as f:
-                content = f.read()
-            content = content.split("\n")
-
-            links = []
-            for i in content:
-                links.append(i.split(":", 1))
-            os.remove(x)
-    except:
-            await m.reply_text("Invalid file input.☹️")
-            os.remove(x)
-            return
-            
-    editable = await m.reply_text(f"Total links found are {len(links)}\n\nSend From where you want to download,\n\nInitial is 0")
-    input1: Message = await bot.listen(editable.chat.id)
-    count = input1.text
-    count = int(count)      	
-    	            
-    await m.reply_text("**Enter Batch Name**")
-    inputy: Message = await bot.listen(editable.chat.id)
-    raw_texty = inputy.text
-
-    await m.reply_text("**Enter Cookie**")
-    input2: Message = await bot.listen(editable.chat.id)
-    cookie = input2.text
-    cookies = cookies = {'PHPSESSID': f'{cookie}'}
-        
-    try:
-        for i in range(count, len(links)):
-
-            url = links[i][1]
-            name1 = links[i][0].replace("\t", "").replace(":", "").replace("/","").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").strip()[:57]
-            name = f'{str(count).zfill(3)}) {name1}'
-            cc = f'{str(count).zfill(3)}. {name1}.pdf\n\n**Batch:-** {raw_texty}\n\n'
-            ka = await helper.vision(url, name, cookies)
-            await m.reply_document(ka, caption=cc)
-            count += 1
-            os.remove(ka)
-            time.sleep(3)
-    except Exception as e:
-        await m.reply_text(e)
-    await m.reply_text("Done ✅")
-    
 bot.run()
